@@ -36,19 +36,14 @@ class Admin extends Controller
         $admins = db('admin')->find($id);
 
         if (request()->isPost()) {
-            $param = input('post.');
-            if (!$param['name']) {
-                $this->error('管理员的用户名不得为空！');
-            }
-            if (!$param['password']) {
-                $param['password'] = $admins['password'];
-            } else {
-                $param['password'] = md5($param['password']);
-            }
+            $data = input('post.');
 
             $adminModel = new \app\admin\model\Admin();
-            $res = $adminModel->update($param);
-            if ($res !== false) {
+            $savenum = $adminModel->saveadmin($data, $admins);
+            if ($savenum == '2') {
+                $this->error('管理员的用户名不能为空！');
+            }
+            if ($savenum !== false) {
                 $this->success('修改成功！', url('lst'));
             } else {
                 $this->error('修改失败！');
@@ -61,5 +56,16 @@ class Admin extends Controller
         }
         $this->assign('admin', $admins);
         return view();
+    }
+
+    public function del($id)
+    {
+        $adminModel = new \app\admin\model\Admin();
+        $delnum = $adminModel->deladmin($id);
+        if ($delnum == 1) {
+            $this->success('删除管理员成功！', url('lst'));
+        } else {
+            $this->error('删除管理员失败！');
+        }
     }
 }
