@@ -8,6 +8,16 @@ class Admin extends Controller
 {
     public function lst()
     {
-        return $this->fetch();
+        return view();
+    }
+
+    public function add()
+    {
+        return view();
+    }
+
+    public function edit()
+    {
+        return view();
     }
 }
