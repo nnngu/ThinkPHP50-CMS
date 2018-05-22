@@ -21,4 +21,9 @@ class Admin extends Model
             return false;
         }
     }
+
+    public function getadmin()
+    {
+        return $this->where('id', 38)->value('name');
+    }
 }

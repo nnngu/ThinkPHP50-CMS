@@ -12,11 +12,12 @@ class Admin extends Controller
 //        dump($res);die;
 
         $admin = new \app\admin\model\Admin();
-        $res = $admin->select();
-        foreach ($res as $key => $value) {
-            echo $value->password;
-            echo '<br>';
-        }
+        $res = $admin->getadmin();
+//        foreach ($res as $key => $value) {
+//            echo $value->password;
+//            echo '<br>';
+//        }
+        dump($res);
         die;
         return view();
     }
