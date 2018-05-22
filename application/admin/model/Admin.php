@@ -11,6 +11,9 @@ class Admin extends Model
         if (empty($data) || !is_array($data)) {
             return false;
         }
+        if ($data['password']) {
+            $data['password'] = md5($data['password']);
+        }
         $res = $this->save($data);
         if ($res) {
             return true;

@@ -8,6 +8,16 @@ class Admin extends Controller
 {
     public function lst()
     {
+//        $res = Db::table('bk_admin')->select();
+//        dump($res);die;
+
+        $admin = new \app\admin\model\Admin();
+        $res = $admin->select();
+        foreach ($res as $key => $value) {
+            echo $value->password;
+            echo '<br>';
+        }
+        die;
         return view();
     }
 
