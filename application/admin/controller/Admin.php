@@ -31,8 +31,35 @@ class Admin extends Controller
         return view();
     }
 
-    public function edit()
+    public function edit($id)
     {
+        $admins = db('admin')->find($id);
+
+        if (request()->isPost()) {
+            $param = input('post.');
+            if (!$param['name']) {
+                $this->error('管理员的用户名不得为空！');
+            }
+            if (!$param['password']) {
+                $param['password'] = $admins['password'];
+            } else {
+                $param['password'] = md5($param['password']);
+            }
+
+            $adminModel = new \app\admin\model\Admin();
+            $res = $adminModel->update($param);
+            if ($res !== false) {
+                $this->success('修改成功！', url('lst'));
+            } else {
+                $this->error('修改失败！');
+            }
+            return;
+        }
+
+        if (!$admins) {
+            $this->error('该管理员不存在！');
+        }
+        $this->assign('admin', $admins);
         return view();
     }
 }
