@@ -24,6 +24,6 @@ class Admin extends Model
 
     public function getadmin()
     {
-        return $this->where('id', 38)->value('name');
+        return $this->paginate(5);
     }
 }
