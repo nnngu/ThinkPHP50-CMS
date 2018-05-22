@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>这里是index.html 哈哈</h1>
+
+{php}
+$empty = "<h1>这里是分配为空的状态</h1>";
+{/php}
+
+<p>---------egt-----------</p>
+{egt name='a' value='$b'}
+<p>大于等于</p>
+{else/}
+<p>不大于等于</p>
+{/egt}
+
+<p>---------gt-----------</p>
+{gt name='a' value='8'}
+<p>大于</p>
+{else/}
+<p>不大于</p>
+{/gt}
+
+<p>---------elt-----------</p>
+{elt name='a' value='8'}
+<p>小于等于</p>
+{else/}
+<p>不小于等于</p>
+{/elt}
+
+<p>---------lt-----------</p>
+{lt name='a' value='8'}
+<p>小于</p>
+{else/}
+<p>不小于</p>
+{/lt}
+
+
+
+<p>---------eq-----------</p>
+{eq name='a' value='10'}
+<p>相等</p>
+{else/}
+<p>不相等</p>
+{/eq}
+
+<p>---------equal-----------</p>
+{equal name='a' value='10'}
+<p>相等</p>
+{else/}
+<p>不相等</p>
+{/equal}
+
+<p>--------- neq notequal-----------</p>
+{neq name='a' value='8'}
+<p>不相等</p>
+{else/}
+<p>相等</p>
+{/neq}
+
+<p>--------- neq notequal-----------</p>
+{notequal name='a' value='10'}
+<p>不相等</p>
+{else/}
+<p>相等</p>
+{/notequal}
+
+
+<p>---------volist-----------</p>
+{volist name='list' id='data' offset='0' length='3' mod='2' empty='$empty' key='s'}
+    <p></p>
+    <p>{$mod}:{$s}:{$data.email}</p>
+{/volist}
+
+
+<p>---------foreach-----------</p>
+{foreach $list as $vo}
+    <p>{$vo.name} : {$vo.email}</p>
+{/foreach}
+
+<p>---------foreach2-----------</p>
+{foreach name="list" item="vo" key='s'}
+    <p>{$s} : {$vo.name} : {$vo.email}</p>
+{/foreach}
+
+<p>---------for-----------</p>
+{for start='1' end='10' step='2' name='k'}
+<p>{$k}</p>
+{/for}
+
+<p>---------for2-----------</p>
+<ul>
+    {for start='0' end='10'}
+        <li>{$i}</li>
+    {/for}
+</ul>
+
+
+
+</body>
+</html>
