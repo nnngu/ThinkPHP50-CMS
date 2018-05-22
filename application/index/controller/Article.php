@@ -4,10 +4,10 @@ namespace app\index\controller;
 
 use think\Controller;
 
-class Index extends Controller
+class Article extends Controller
 {
     public function index()
     {
-        return view();
+        return view('article');
     }
 }
