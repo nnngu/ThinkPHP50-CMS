@@ -15,14 +15,14 @@ class Article extends Common
         if (request()->isPost()) {
             $data = input('post.');
             $article = new \app\admin\model\Article();
-            if ($_FILES['thumb']['tmp_name']) {
-                $file = request()->file('thumb');
-                $info = $file->move(ROOT_PATH.'public'.DS.'uploads');
-                if ($info) {
-                    $thumb = '/uploads/'.$info->getSaveName();
-                    $data['thumb'] = $thumb;
-                }
-            }
+//            if ($_FILES['thumb']['tmp_name']) {
+//                $file = request()->file('thumb');
+//                $info = $file->move(ROOT_PATH.'public'.DS.'uploads');
+//                if ($info) {
+//                    $thumb = '/uploads/'.$info->getSaveName();
+//                    $data['thumb'] = $thumb;
+//                }
+//            }
             if ($article->save($data)) {
                 $this->success('添加文章成功！', url('lst'));
             } else {
