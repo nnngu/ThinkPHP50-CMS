@@ -12,6 +12,14 @@ class Cate extends Common
     public function lst()
     {
         $cate = new \app\admin\model\Cate();
+        if (request()->isPost()) {
+            $sorts = input('post.');
+            foreach ($sorts as $k => $v) {
+                $cate->update(['id' => $k, 'sort' => $v]);
+            }
+            $this->success('更新排序成功！', url('lst'));
+            return;
+        }
         $cateres = $cate->cateTree();
         $this->assign('cateres', $cateres);
         return view();
