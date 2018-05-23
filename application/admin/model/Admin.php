@@ -49,6 +49,20 @@ class Admin extends Model
             return 2;
         }
     }
+
+    public function login($data)
+    {
+        $admin = self::getByName($data['name']);
+        if ($admin) {
+            if ($admin['password'] == md5($data['password'])) {
+                return 2; // 登录密码正确
+            } else {
+                return 3; // 登录密码不正确
+            }
+        } else {
+            return 1; // 用户不存在
+        }
+    }
 }
 
 
