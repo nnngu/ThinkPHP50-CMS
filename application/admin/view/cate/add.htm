@@ -58,11 +58,19 @@
                             <div class="widget-body">
                                 <div id="horizontal-form">
                                     <form class="form-horizontal" role="form" action="" method="post">
+
+                                        <input type="hidden" name="keywords" value="no">
+                                        <input type="hidden" name="desc" value="no">
+                                        <input type="hidden" name="content" value="no">
+
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label no-padding-right">上级栏目</label>
                                             <div class="col-sm-6">
-                                                <select>
+                                                <select name="pid">
                                                     <option value="0">顶级栏目</option>
+                                                    {volist name="cateres" id="cate"}
+                                                    <option value="{$cate.id}">{$cate.catename}</option>
+                                                    {/volist}
                                                 </select>
                                             </div>
                                             <p class="help-block col-sm-4 red">* 必填</p>
@@ -71,7 +79,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label no-padding-right">栏目名称</label>
                                             <div class="col-sm-6">
-                                                <input class="form-control" placeholder="" name="name" required=""
+                                                <input class="form-control" placeholder="" name="catename" required=""
                                                        type="text">
                                             </div>
                                             <p class="help-block col-sm-4 red">* 必填</p>
@@ -81,12 +89,12 @@
                                             <label class="col-sm-2 control-label no-padding-right">栏目类型</label>
                                             <div class="col-sm-6">
                                                 <div class="radio" style="float:left; margin-right: 10px"><label><input
-                                                                                 name="form-field-radio"
-                                                                                 type="radio" checked="checked"><span class="text">列表</span></label>
+                                                                                 name="type"
+                                                                                 type="radio" checked="checked" value="1"><span class="text">列表</span></label>
                                                 </div>
                                                 <div class="radio" style="float:left; margin-right: 10px"><label><input class="inverted"
-                                                                                 name="form-field-radio"
-                                                                                 type="radio"><span class="text">单页</span></label>
+                                                                                 name="type"
+                                                                                 type="radio" value="2"><span class="text">单页</span></label>
                                                 </div>
                                             </div>
                                         </div>
