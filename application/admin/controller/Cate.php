@@ -7,8 +7,9 @@ class Cate extends Common
 {
     public function lst()
     {
-        $adminres = db('admin')->select();
-        $this->assign('adminres', $adminres);
+        $cate = new \app\admin\model\Cate();
+        $cateres = $cate->catetree();
+        $this->assign('cateres', $cateres);
         return view();
     }
 
@@ -24,7 +25,7 @@ class Cate extends Common
                 $this->error('添加栏目失败！');
             }
         }
-        $cateres = $cate->select();
+        $cateres = $cate->catetree();
         $this->assign('cateres', $cateres);
         return view();
     }
