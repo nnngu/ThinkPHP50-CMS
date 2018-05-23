@@ -34,6 +34,25 @@ class Cate extends Common
         return view();
     }
 
+    public function edit()
+    {
+        $cate = new \app\admin\model\Cate();
+        if (request()->isPost()) {
+            $save = $cate->save(input('post.'), ['id' => input('id')]);
+            if ($save !== false) {
+                $this->success('修改栏目成功！', url('lst'));
+            } else {
+                $this->error('修改栏目失败！');
+            }
+            return;
+        }
+        $cates = $cate->find(input('id'));
+        $cateres = $cate->cateTree();
+        $this->assign('cateres', $cateres);
+        $this->assign('cates', $cates);
+        return view();
+    }
+
     public function del()
     {
         $del = db('cate')->delete(input('id'));
