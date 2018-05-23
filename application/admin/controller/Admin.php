@@ -2,9 +2,8 @@
 
 namespace app\admin\controller;
 
-use think\Controller;
 
-class Admin extends Controller
+class Admin extends Common
 {
     public function lst()
     {
@@ -67,5 +66,11 @@ class Admin extends Controller
         } else {
             $this->error('删除管理员失败！');
         }
+    }
+
+    public function logout()
+    {
+        session(null);
+        $this->success('退出系统成功！', url('login/index'));
     }
 }

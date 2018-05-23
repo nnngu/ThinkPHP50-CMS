@@ -55,6 +55,8 @@ class Admin extends Model
         $admin = self::getByName($data['name']);
         if ($admin) {
             if ($admin['password'] == md5($data['password'])) {
+                session('id', $admin['id']);
+                session('name', $admin['name']);
                 return 2; // 登录密码正确
             } else {
                 return 3; // 登录密码不正确
