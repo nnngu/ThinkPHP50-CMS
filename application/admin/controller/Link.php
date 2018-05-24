@@ -15,7 +15,7 @@ class Link extends Common
             $this->success('更新排序成功！', url('lst'));
             return;
         }
-        $linkRes = \app\admin\model\Link::order('sort asc')->paginate(5);
+        $linkRes = \app\admin\model\Link::order('sort desc')->paginate(5);
         $this->assign('linkRes', $linkRes);
         return view();
     }
@@ -31,5 +31,15 @@ class Link extends Common
             }
         }
         return view();
+    }
+
+    public function del()
+    {
+        $del = \app\admin\model\Link::destroy(input('id'));
+        if ($del) {
+            $this->success('删除友情链接成功！', url('lst'));
+        } else {
+            $this->error('删除友情链接失败！');
+        }
     }
 }
