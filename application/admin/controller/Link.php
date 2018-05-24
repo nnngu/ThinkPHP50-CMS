@@ -33,6 +33,22 @@ class Link extends Common
         return view();
     }
 
+    public function edit()
+    {
+        if (request()->isPost()) {
+            $edit = \app\admin\model\Link::update(input('post.'));
+            if ($edit) {
+                $this->success('修改友情链接成功！', url('lst'));
+            } else {
+                $this->error('修改友情链接失败！');
+            }
+            return;
+        }
+        $links = \app\admin\model\Link::get(input('id'));
+        $this->assign('links', $links);
+        return view();
+    }
+
     public function del()
     {
         $del = \app\admin\model\Link::destroy(input('id'));
