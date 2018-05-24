@@ -10,12 +10,12 @@ class Link extends Common
         if (request()->isPost()) {
             $sorts = input('post.');
             foreach ($sorts as $k => $v) {
-                $cate->update(['id' => $k, 'sort' => $v]);
+                \app\admin\model\Link::update(['id' => $k, 'sort' => $v]);
             }
             $this->success('更新排序成功！', url('lst'));
             return;
         }
-        $linkRes = \app\admin\model\Link::select();
+        $linkRes = \app\admin\model\Link::order('sort asc')->paginate(5);
         $this->assign('linkRes', $linkRes);
         return view();
     }
