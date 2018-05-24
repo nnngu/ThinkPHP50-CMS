@@ -40,6 +40,21 @@ class Article extends Common
 
     public function edit()
     {
+        if (request()->isPost()) {
+            $article = new \app\admin\model\Article();
+            $save = $article->save(input('post.'), ['id' => input('id')]);
+            if ($save !== false) {
+                $this->success('修改文章成功！', url('lst'));
+            } else {
+                $this->error('修改文章失败！');
+            }
+            return;
+        }
+        $cate = new \app\admin\model\Cate();
+        $cateres = $cate->cateTree();
+        $arts = db('article')->find(input('id'));
+        $this->assign('cateres', $cateres);
+        $this->assign('arts', $arts);
         return view();
     }
 }
