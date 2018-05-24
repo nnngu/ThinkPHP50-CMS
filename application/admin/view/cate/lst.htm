@@ -73,7 +73,9 @@
                                             <td>{if condition="$cate['level'] neq 0"}|{/if}<?php echo str_repeat('-', $cate['level']*8) ?>{$cate.catename}</td>
                                             <td align="center">
                                                 {if condition="$cate['type'] eq 1"}
-                                                列表
+                                                文章列表
+                                                {elseif condition="$cate['type'] eq 3" }
+                                                图片列表
                                                 {else /}
                                                 单页
                                                 {/if}

@@ -96,12 +96,17 @@
                                                 <div class="radio" style="float:left; margin-right: 10px"><label><input
                                                         name="type"
                                                         type="radio" {if condition="$cates['type'] eq 1"
-                                                        }checked="checked" {/if} value="1"><span class="text">列表</span></label>
+                                                        }checked="checked" {/if} value="1"><span class="text">文章列表</span></label>
                                                 </div>
                                                 <div class="radio" style="float:left; margin-right: 10px"><label><input {if condition="$cates['type'] eq 2" }checked="checked" {/if}
                                                     class="inverted"
                                                     name="type"
                                                     type="radio" value="2"><span class="text">单页</span></label>
+                                                </div>
+                                                <div class="radio" style="float:left; margin-right: 10px"><label><input {if condition="$cates['type'] eq 3" }checked="checked" {/if}
+                                                    class="inverted"
+                                                    name="type"
+                                                    type="radio" value="2"><span class="text">图片列表</span></label>
                                                 </div>
                                             </div>
                                         </div>
