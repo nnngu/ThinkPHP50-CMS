@@ -57,4 +57,13 @@ class Article extends Common
         $this->assign('arts', $arts);
         return view();
     }
+
+    public function del()
+    {
+        if (\app\admin\model\Article::destroy(input('id'))) {
+            $this->success('删除文章成功！', url('lst'));
+        } else {
+            $this->error('删除文章失败！');
+        }
+    }
 }
