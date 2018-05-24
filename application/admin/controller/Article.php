@@ -7,6 +7,8 @@ class Article extends Common
 {
     public function lst()
     {
+        $artRes = db('article')->field('a.*, b.catename')->alias('a')->join('bk_cate b', 'a.cateid=b.id')->paginate(10);
+        $this->assign('artRes', $artRes);
         return view();
     }
 
