@@ -76,6 +76,12 @@ class Cate extends Common
         $cateId = input('id');
         $cateModel = new \app\admin\model\Cate();
         $sonIds = $cateModel->getChildrenId($cateId);
+        $allCateId = $sonIds;
+        $allCateId[] = $cateId;
+        foreach ($allCateId as $k=>$v) {
+            $article = new \app\admin\model\Article();
+            $article->where(['cateid'=>$v])->delete();
+        }
         if ($sonIds) {
             db('cate')->delete($sonIds);
         }
