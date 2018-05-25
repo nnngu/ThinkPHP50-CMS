@@ -238,4 +238,15 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
+
+    // 验证码的配置
+    'captcha' => [
+        'codeSet' => '23568abcdfhjkmn',
+        'length' => 4,
+        'reset' => true,
+        'useCurve' => false,
+//        'fontSize' => 25,
+//        'imageH' => 30,
+//        'imageW' => 100,
+    ],
 ];

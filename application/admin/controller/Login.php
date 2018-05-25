@@ -9,6 +9,7 @@ class Login extends Controller
     public function index()
     {
         if (request()->isPost()) {
+            $this->check(input('code'));
             $adminModel = new \app\admin\model\Admin();
             $num = $adminModel->login(input('post.'));
             if ($num == 1) {
@@ -23,5 +24,14 @@ class Login extends Controller
             return;
         }
         return view();
+    }
+
+    public function check($code='')
+    {
+        if (!captcha_check($code)) {
+            $this->error('验证码错误！');
+        } else {
+            return true;
+        }
     }
 }
