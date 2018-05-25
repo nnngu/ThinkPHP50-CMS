@@ -3,6 +3,8 @@
 namespace app\admin\controller;
 
 
+use think\Loader;
+
 class Cate extends Common
 {
     protected $beforeActionList = [
@@ -29,6 +31,11 @@ class Cate extends Common
     {
         $cate = new \app\admin\model\Cate();
         if (request()->isPost()) {
+            $validate = Loader::validate('Cate');
+            if(!$validate->scene('add')->check(input('post.'))){
+                $this->error($validate->getError());
+            }
+
             $cate->data(input('post.'));
             $add = $cate->save();
             if ($add) {
@@ -46,6 +53,11 @@ class Cate extends Common
     {
         $cate = new \app\admin\model\Cate();
         if (request()->isPost()) {
+            $validate = Loader::validate('Cate');
+            if(!$validate->scene('edit')->check(input('post.'))){
+                $this->error($validate->getError());
+            }
+
             $save = $cate->save(input('post.'), ['id' => input('id')]);
             if ($save !== false) {
                 $this->success('修改栏目成功！', url('lst'));
