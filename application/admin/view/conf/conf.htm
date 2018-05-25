@@ -46,8 +46,7 @@
             <!-- Page Body -->
             <div class="page-body">
 
-                <button type="button" tooltip="添加配置" class="btn btn-sm btn-azure btn-addon"
-                        onClick="javascript:window.location.href = '{:url('add')}'"><i class="fa fa-plus"></i> Add
+                <button type="button" tooltip="网站配置" class="btn btn-sm btn-azure btn-addon" disabled="disabled">网站配置
                 </button>
                 <div class="row">
                     <div class="col-lg-12 col-sm-12 col-xs-12">
@@ -63,11 +62,49 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        <?php foreach($confRes as $k => $v): ?>
                                         <tr>
-                                            <td align="right">站点名称</td>
-                                            <td align="left"><input name="1" style="width:100%;" type="text" value="thinkphp5.0"></td>
+                                            <td align="right"><?php echo $v['cnname']; ?></td>
+
+                                            <td align="left">
+                                                <?php if($v['type']==1): ?>
+                                                    <input name="1" style="width:100%;" type="text" value="thinkphp5.0">
+                                                <?php elseif($v['type']==2): ?>
+                                                    <textarea style="width:100%;"></textarea>
+                                                <?php elseif($v['type']==3):
+                                                    if($v['values']) {
+                                                        $arrRadio = explode(',', $v['values']);
+                                                    }
+                                                    foreach($arrRadio as $k1 => $v1):
+                                                ?>
+                                                        <label style="margin-right:40px;">
+                                                            <input name="type" type="radio" checked="checked" value="{$v1}">
+                                                            <span class="text">
+                                                                {$v1}
+                                                            </span>
+                                                        </label>
+                                                    <?php endforeach; ?>
+                                                <?php elseif($v['type']==4): ?>
+                                                    <label>
+                                                        <input class="colored-success" id="form-field-checkbox" name="form-field-checkbox" type="checkbox" value="{$v['values']}">
+                                                        <span class="text">{$v['values']}</span>
+                                                    </label>
+                                                <?php elseif($v['type']==5):
+                                                    if($v['values']) {
+                                                        $arrSelect = explode(',', $v['values']);
+                                                    }
+                                                ?>
+                                                <select>
+                                                    <?php foreach($arrSelect as $k2 => $v2): ?>
+                                                        <option value="{$v2}">{$v2}</option>
+                                                    <?php endforeach; ?>
+                                                </select>
+
+                                                <?php endif; ?>
+                                            </td>
 
                                         </tr>
+                                        <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                     <div style="padding-left: 130px; margin-top: 10px;"><input class="btn btn-primary btn-sm shiny" type="submit" value="排序"></div>
