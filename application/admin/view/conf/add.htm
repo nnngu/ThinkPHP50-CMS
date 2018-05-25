@@ -58,10 +58,13 @@
                             <div class="widget-body">
                                 <div id="horizontal-form">
                                     <form class="form-horizontal" role="form" action="" method="post">
+
+                                        <input type="hidden" name="value" value="默认">
+
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label no-padding-right">中文名称</label>
                                             <div class="col-sm-6">
-                                                <input class="form-control" placeholder="" name="title" required=""
+                                                <input class="form-control" placeholder="" name="cnname" required=""
                                                        type="text">
                                             </div>
                                             <p class="help-block col-sm-4 red">* 必填</p>
@@ -70,7 +73,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label no-padding-right">英文名称</label>
                                             <div class="col-sm-6">
-                                                <input class="form-control" placeholder="" name="url" required=""
+                                                <input class="form-control" placeholder="" name="enname" required=""
                                                        type="text">
                                             </div>
                                             <p class="help-block col-sm-4 red">* 必填</p>
@@ -79,7 +82,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label no-padding-right">配置类型</label>
                                             <div class="col-sm-6">
-                                                <select>
+                                                <select name="type">
                                                     <option value="0">请选择</option>
                                                     <option value="1">单行文本</option>
                                                     <option value="2">多行文本</option>
@@ -94,7 +97,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label no-padding-right">可选值</label>
                                             <div class="col-sm-6">
-                                                <textarea name="desc" class="form-control"></textarea>
+                                                <textarea name="values" class="form-control"></textarea>
                                             </div>
                                         </div>
 

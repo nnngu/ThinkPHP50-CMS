@@ -63,23 +63,32 @@
                                             <th class="text-center">英文名称</th>
                                             <th class="text-center">中文名称</th>
                                             <th class="text-center">配置类型</th>
-                                            <th class="text-center">值</th>
                                             <th class="text-center" width="20%">操作</th>
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        {volist name="confRes" id="conf"}
                                         <tr>
-                                            <td align="center">1</td>
-                                            <td align="center"><input name="1" style="width: 50%; text-align: center" type="text" value="50"></td>
-                                            <td>英文名称</td>
-                                            <td>中文名称</td>
-                                            <td>
-                                                配置类型
+                                            <td align="center">{$conf.id}</td>
+                                            <td align="center"><input name="{$conf.id}" style="width: 50%; text-align: center" type="text" value="{$conf.sort}"></td>
+                                            <td align="center">{$conf.enname}</td>
+                                            <td align="center">{$conf.cnname}</td>
+                                            <td align="center">
+                                                {if condition="$conf['type'] eq 1"}
+                                                单行文本
+                                                {elseif condition="$conf['type'] eq 2"}
+                                                多行文本
+                                                {elseif condition="$conf['type'] eq 3"}
+                                                单选按钮
+                                                {elseif condition="$conf['type'] eq 4"}
+                                                复选框
+                                                {elseif condition="$conf['type'] eq 5"}
+                                                下拉菜单
+                                                {else/}
+                                                未知类型
+                                                {/if}
                                             </td>
 
-                                            <td>
-                                                值
-                                            </td>
                                             <td align="center">
                                                 <a href="#"
                                                    class="btn btn-primary btn-sm shiny">
@@ -91,12 +100,14 @@
                                                 </a>
                                             </td>
                                         </tr>
+                                        {/volist}
                                         </tbody>
                                     </table>
                                     <div style="padding-left: 130px; margin-top: 10px;"><input class="btn btn-primary btn-sm shiny" type="submit" value="排序"></div>
                                     </form>
                                 </div>
                                 <div style="margin-top: 10px; width: 100%; text-align: center">
+                                    {$confRes->render()}
                                 </div>
                                 <div>
                                 </div>
