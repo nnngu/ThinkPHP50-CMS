@@ -66,4 +66,11 @@ class Conf extends Common
             $this->error('删除配置项失败！');
         }
     }
+
+    public function conf()
+    {
+        $confRes = \app\admin\model\Conf::order('sort desc')->select();
+        $this->assign('confRes', $confRes);
+        return view();
+    }
 }
