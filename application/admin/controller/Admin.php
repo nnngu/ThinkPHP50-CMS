@@ -3,6 +3,8 @@
 namespace app\admin\controller;
 
 
+use think\Loader;
+
 class Admin extends Common
 {
     public function lst()
@@ -16,8 +18,12 @@ class Admin extends Common
     public function add()
     {
         if (request()->isPost()) {
-            $data = input('post.');
+            $validate = Loader::validate('Admin');
+            if(!$validate->scene('add')->check(input('post.'))){
+                $this->error($validate->getError());
+            }
 
+            $data = input('post.');
             $admin = new \app\admin\model\Admin();
             $res = $admin->addadmin($data);
             if ($res) {
@@ -35,8 +41,12 @@ class Admin extends Common
         $admins = db('admin')->find($id);
 
         if (request()->isPost()) {
-            $data = input('post.');
+            $validate = Loader::validate('Admin');
+            if(!$validate->scene('edit')->check(input('post.'))){
+                $this->error($validate->getError());
+            }
 
+            $data = input('post.');
             $adminModel = new \app\admin\model\Admin();
             $savenum = $adminModel->saveadmin($data, $admins);
             if ($savenum == '2') {
