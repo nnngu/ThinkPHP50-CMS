@@ -68,9 +68,9 @@
 
                                             <td align="left">
                                                 <?php if($v['type']==1): ?>
-                                                    <input name="1" style="width:100%;" type="text" value="thinkphp5.0">
+                                                    <input name="{$v['enname']}" style="width:100%;" type="text" value="{$v['value']}">
                                                 <?php elseif($v['type']==2): ?>
-                                                    <textarea style="width:100%;"></textarea>
+                                                    <textarea name="{$v['enname']}" style="width:100%;">{$v['value']}</textarea>
                                                 <?php elseif($v['type']==3):
                                                     if($v['values']) {
                                                         $arrRadio = explode(',', $v['values']);
@@ -78,7 +78,7 @@
                                                     foreach($arrRadio as $k1 => $v1):
                                                 ?>
                                                         <label style="margin-right:40px;">
-                                                            <input name="type" type="radio" checked="checked" value="{$v1}">
+                                                            <input name="{$v['enname']}" type="radio" checked="checked" value="{$v1}">
                                                             <span class="text">
                                                                 {$v1}
                                                             </span>
@@ -86,7 +86,7 @@
                                                     <?php endforeach; ?>
                                                 <?php elseif($v['type']==4): ?>
                                                     <label>
-                                                        <input class="colored-success" id="form-field-checkbox" name="form-field-checkbox" type="checkbox" value="{$v['values']}">
+                                                        <input class="colored-success" id="form-field-checkbox" name="{$v['enname']}" type="checkbox" value="{$v['values']}">
                                                         <span class="text">{$v['values']}</span>
                                                     </label>
                                                 <?php elseif($v['type']==5):
@@ -94,7 +94,7 @@
                                                         $arrSelect = explode(',', $v['values']);
                                                     }
                                                 ?>
-                                                <select>
+                                                <select name="{$v['enname']}">
                                                     <?php foreach($arrSelect as $k2 => $v2): ?>
                                                         <option value="{$v2}">{$v2}</option>
                                                     <?php endforeach; ?>
@@ -107,7 +107,7 @@
                                         <?php endforeach; ?>
                                         </tbody>
                                     </table>
-                                    <div style="padding-left: 130px; margin-top: 10px;"><input class="btn btn-primary btn-sm shiny" type="submit" value="排序"></div>
+                                    <div align="center" style="margin-top: 20px;"><input class="btn btn-primary btn-sm shiny" type="submit" value="提交修改"></div>
                                     </form>
                                 </div>
                                 <div style="margin-top: 10px; width: 100%; text-align: center">

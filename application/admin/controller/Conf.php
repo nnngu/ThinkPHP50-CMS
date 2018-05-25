@@ -69,6 +69,16 @@ class Conf extends Common
 
     public function conf()
     {
+        if (request()->isPost()) {
+            $data = input('post.');
+            if ($data) {
+                foreach ($data as $k=>$v) {
+                    \app\admin\model\Conf::where('enname', $k)->update(['value'=>$v]);
+                }
+                $this->success('修改配置项成功！');
+            }
+            return;
+        }
         $confRes = \app\admin\model\Conf::order('sort desc')->select();
         $this->assign('confRes', $confRes);
         return view();
