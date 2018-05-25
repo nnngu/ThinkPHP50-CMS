@@ -44,7 +44,7 @@ class Link extends Common
     {
         if (request()->isPost()) {
             $validate = Loader::validate('Link');
-            if(!$validate->check(input('post.'))){
+            if(!$validate->scene('edit')->check(input('post.'))){
                 $this->error($validate->getError());
             }
 

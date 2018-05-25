@@ -3,6 +3,8 @@
 namespace app\admin\controller;
 
 
+use think\Loader;
+
 class Article extends Common
 {
     public function lst()
@@ -16,15 +18,12 @@ class Article extends Common
     {
         if (request()->isPost()) {
             $data = input('post.');
+            $validate = Loader::validate('Article');
+            if(!$validate->scene('add')->check(input('post.'))){
+                $this->error($validate->getError());
+            }
+
             $article = new \app\admin\model\Article();
-//            if ($_FILES['thumb']['tmp_name']) {
-//                $file = request()->file('thumb');
-//                $info = $file->move(ROOT_PATH.'public'.DS.'uploads');
-//                if ($info) {
-//                    $thumb = '/uploads/'.$info->getSaveName();
-//                    $data['thumb'] = $thumb;
-//                }
-//            }
             if ($article->save($data)) {
                 $this->success('添加文章成功！', url('lst'));
             } else {
@@ -41,6 +40,11 @@ class Article extends Common
     public function edit()
     {
         if (request()->isPost()) {
+            $validate = Loader::validate('Article');
+            if(!$validate->scene('edit')->check(input('post.'))){
+                $this->error($validate->getError());
+            }
+
             $article = new \app\admin\model\Article();
             $save = $article->save(input('post.'), ['id' => input('id')]);
             if ($save !== false) {

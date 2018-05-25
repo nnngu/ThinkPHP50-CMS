@@ -25,6 +25,6 @@ class Link extends Validate
 
     protected $scene = [
         'add' => ['title', 'url', 'desc'],
-        'edit' => ['title', 'url'=>'require|url', 'desc'=>'require'],
+        'edit' => ['title', 'url'=>'require|url'],
     ];
 }
