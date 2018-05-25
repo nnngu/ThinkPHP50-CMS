@@ -2,6 +2,8 @@
 
 namespace app\admin\controller;
 
+use think\Loader;
+
 class Conf extends Common
 {
     public function lst()
@@ -23,6 +25,11 @@ class Conf extends Common
     public function add()
     {
         if (request()->isPost()) {
+            $validate = Loader::validate('Conf');
+            if(!$validate->check(input('post.'))){
+                $this->error($validate->getError());
+            }
+
             $data = input('post.');
             if ($data['values']) {
                 $data['values'] = str_replace('，', ',', $data['values']);
@@ -40,6 +47,11 @@ class Conf extends Common
     public function edit()
     {
         if (request()->isPost()) {
+            $validate = Loader::validate('Conf');
+            if(!$validate->scene('edit')->check(input('post.'))){
+                $this->error($validate->getError());
+            }
+
             $data = input('post.');
             if ($data['values']) {
                 $data['values'] = str_replace('，', ',', $data['values']);

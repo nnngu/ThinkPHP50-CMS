@@ -2,9 +2,8 @@
 
 namespace app\index\controller;
 
-use think\Controller;
 
-class Article extends Controller
+class Article extends Common
 {
     public function index()
     {
