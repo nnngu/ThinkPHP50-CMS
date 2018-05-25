@@ -39,6 +39,21 @@ class Conf extends Common
 
     public function edit()
     {
+        if (request()->isPost()) {
+            $data = input('post.');
+            if ($data['values']) {
+                $data['values'] = str_replace('，', ',', $data['values']);
+            }
+            $conf = new \app\admin\model\Conf();
+            $save = $conf->save($data, ['id' => $data['id']]);
+            if ($save !== false) {
+                $this->success('修改配置项成功！', url('lst'));
+            } else {
+                $this->error('修改配置项失败！');
+            }
+        }
+        $confs = \app\admin\model\Conf::find(input('id'));
+        $this->assign('confs', $confs);
         return view();
     }
 
