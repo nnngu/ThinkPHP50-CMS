@@ -24,6 +24,9 @@ class Conf extends Common
     {
         if (request()->isPost()) {
             $data = input('post.');
+            if ($data['values']) {
+                $data['values'] = str_replace('，', ',', $data['values']);
+            }
             $conf = new \app\admin\model\Conf();
             if ($conf->save($data)) {
                 $this->success('添加配置成功！', url('lst'));
