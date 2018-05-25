@@ -71,6 +71,24 @@ class Conf extends Common
     {
         if (request()->isPost()) {
             $data = input('post.');
+            $formArr = array();
+            foreach ($data as $k => $v) {
+                $formArr[] = $k;
+            }
+            $_confArr = db('conf')->field('enname')->select();
+            $confArr = array();
+            foreach ($_confArr as $k => $v) {
+                $confArr[] = $v['enname'];
+            }
+            $checkboxArr = array();
+            foreach ($confArr as $k => $v) {
+                if (!in_array($v, $formArr)) {
+                    $checkboxArr[] = $v;
+                }
+            }
+            foreach ($checkboxArr as $k=>$v) {
+                \app\admin\model\Conf::where('enname', $v)->update(['value'=>'']);
+            }
             if ($data) {
                 foreach ($data as $k=>$v) {
                     \app\admin\model\Conf::where('enname', $k)->update(['value'=>$v]);

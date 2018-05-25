@@ -78,7 +78,7 @@
                                                     foreach($arrRadio as $k1 => $v1):
                                                 ?>
                                                         <label style="margin-right:40px;">
-                                                            <input name="{$v['enname']}" type="radio" checked="checked" value="{$v1}">
+                                                            <input <?php if($v1 == $v['value']){echo "checked='checked'";} ?> name="{$v['enname']}" type="radio" value="{$v1}">
                                                             <span class="text">
                                                                 {$v1}
                                                             </span>
@@ -86,7 +86,7 @@
                                                     <?php endforeach; ?>
                                                 <?php elseif($v['type']==4): ?>
                                                     <label>
-                                                        <input class="colored-success" id="form-field-checkbox" name="{$v['enname']}" type="checkbox" value="{$v['values']}">
+                                                        <input <?php if($v['value'] == $v['values']){echo "checked='checked'";} ?> class="colored-success" id="form-field-checkbox" name="{$v['enname']}" type="checkbox" value="{$v['values']}">
                                                         <span class="text">{$v['values']}</span>
                                                     </label>
                                                 <?php elseif($v['type']==5):
@@ -96,7 +96,7 @@
                                                 ?>
                                                 <select name="{$v['enname']}">
                                                     <?php foreach($arrSelect as $k2 => $v2): ?>
-                                                        <option value="{$v2}">{$v2}</option>
+                                                        <option <?php if($v2 == $v['value']){echo "selected='selected'";} ?> value="{$v2}">{$v2}</option>
                                                     <?php endforeach; ?>
                                                 </select>
 
