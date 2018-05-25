@@ -38,4 +38,14 @@ class Conf extends Common
     {
         return view();
     }
+
+    public function del()
+    {
+        $del = \app\admin\model\Conf::destroy(input('id'));
+        if ($del) {
+            $this->success('删除配置项成功！', url('lst'));
+        } else {
+            $this->error('删除配置项失败！');
+        }
+    }
 }
