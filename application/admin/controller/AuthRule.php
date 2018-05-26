@@ -73,6 +73,14 @@ class AuthRule extends Common
 
     public function del()
     {
-
+        $authRule = new \app\admin\model\AuthRule();
+        $authRuleIds = $authRule->getChildrenId(input('id'));
+        $authRuleIds[] = input('id');
+        $del = \app\admin\model\AuthRule::destroy($authRuleIds);
+        if ($del !== false) {
+            $this->success('删除权限成功！', url('lst'));
+        } else {
+            $this->error('删除权限失败！');
+        }
     }
 }
