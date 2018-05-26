@@ -30,6 +30,9 @@ class AuthGroup extends Common
             }
             return;
         }
+        $authRule = new \app\admin\model\AuthRule();
+        $authRuleRes = $authRule->authRuleTree();
+        $this->assign('authRuleRes', $authRuleRes);
         return view();
     }
 
@@ -54,6 +57,9 @@ class AuthGroup extends Common
 
         $authGroups = db('auth_group')->find(input('id'));
         $this->assign('authGroups', $authGroups);
+        $authRule = new \app\admin\model\AuthRule();
+        $authRuleRes = $authRule->authRuleTree();
+        $this->assign('authRuleRes', $authRuleRes);
         return view();
     }
 

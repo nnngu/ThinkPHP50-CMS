@@ -73,7 +73,7 @@
                                             <div class="col-sm-6">
                                                 <p class="help-block col-sm-4 red">
                                                     <label>
-                                                        <input class="checkbox-slider colored-darkorange" type="checkbox" {if condition="$authGroups.status eq 1"}checked="checked"{/if} name="status">
+                                                        <input class="checkbox-slider colored-success" type="checkbox" {if condition="$authGroups.status eq 1"}checked="checked"{/if} name="status">
                                                         <span class="text">
 
                                                     </span>
@@ -86,7 +86,27 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label no-padding-right">配置权限</label>
                                             <div class="col-sm-6">
-                                                <p class="help-block col-sm-4 red">* TODO</p>
+                                                <table class="table table-hover">
+                                                    <thead class="bordered-success">
+                                                    <tr>
+                                                        <th>
+                                                            配置权限
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {volist name='authRuleRes' id='authRule'}
+                                                    <tr>
+                                                        <td>
+                                                            <label>
+                                                                <?php echo str_repeat('&nbsp;', $authRule['level']*8); ?><input class="colored-success" name="form-field-checkbox" type="checkbox" value="true">
+                                                                <span class="text">{$authRule.title}</span>
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    {/volist}
+                                                    </tbody>
+                                                </table>
                                             </div>
 
                                         </div>
