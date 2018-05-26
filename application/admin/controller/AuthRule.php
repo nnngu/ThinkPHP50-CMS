@@ -44,4 +44,35 @@ class AuthRule extends Common
         $this->assign('authRuleRes', $authRuleRes);
         return view();
     }
+
+    public function edit()
+    {
+        if (request()->isPost()) {
+            $data = input('post.');
+            $plevel = db('auth_rule')->where('id', $data['pid'])->field('level')->find();
+            if ($plevel) {
+                $data['level'] = $plevel['level']+1;
+            } else {
+                $data['level'] = 0;
+            }
+            $save = db('auth_rule')->update($data);
+            if ($save !== false) {
+                $this->success('修改权限成功！', url('lst'));
+            } else {
+                $this->error('修改权限失败！');
+            }
+            return;
+        }
+        $authRule = new \app\admin\model\AuthRule();
+        $authRuleRes = $authRule->authRuleTree();
+        $authRules = $authRule->find(input('id'));
+        $this->assign('authRules', $authRules);
+        $this->assign('authRuleRes', $authRuleRes);
+        return view();
+    }
+
+    public function del()
+    {
+
+    }
 }

@@ -39,9 +39,9 @@
                         <a href="#">系统</a>
                     </li>
                     <li>
-                        <a href="{:url('lst')}">链接管理</a>
+                        <a href="{:url('lst')}">权限管理</a>
                     </li>
-                    <li class="active">修改链接</li>
+                    <li class="active">修改权限</li>
                 </ul>
             </div>
             <!-- /Page Breadcrumb -->
@@ -53,34 +53,39 @@
                     <div class="col-lg-12 col-sm-12 col-xs-12">
                         <div class="widget">
                             <div class="widget-header bordered-bottom bordered-blue">
-                                <span class="widget-caption">修改链接</span>
+                                <span class="widget-caption">修改权限</span>
                             </div>
                             <div class="widget-body">
                                 <div id="horizontal-form">
                                     <form class="form-horizontal" role="form" action="" method="post">
-                                        <input type="hidden" name="id" value="{$links.id}">
+                                        <input type="hidden" name="id" value="{$authRules.id}">
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label no-padding-right">链接标题</label>
+                                            <label class="col-sm-2 control-label no-padding-right">上级权限</label>
                                             <div class="col-sm-6">
-                                                <input class="form-control" value="{$links.title}" placeholder="" name="title" required=""
+                                                <select name="pid">
+                                                    <option value="0">顶级权限</option>
+                                                    {volist name='authRuleRes' id='authRule'}
+                                                    <option {if condition="$authRules['pid'] eq $authRule['id']"}selected="selected"{/if} value="{$authRule.id}"><?php if($authRule['level']!=0){echo '|';} echo str_repeat('——', $authRule['level']*1) ?>{$authRule.title}</option>
+                                                    {/volist}
+                                                </select>
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label no-padding-right">权限名称</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" placeholder="" name="title" value="{$authRules.title}" required=""
                                                        type="text">
                                             </div>
                                             <p class="help-block col-sm-4 red">* 必填</p>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label no-padding-right">链接地址</label>
+                                            <label class="col-sm-2 control-label no-padding-right">控/方</label>
                                             <div class="col-sm-6">
-                                                <input class="form-control" placeholder="" value="{$links.url}" name="url" required=""
+                                                <input class="form-control" placeholder="" name="name" value="{$authRules.name}" required=""
                                                        type="text">
-                                            </div>
-                                            <p class="help-block col-sm-4 red">* 必填</p>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label no-padding-right">链接描述</label>
-                                            <div class="col-sm-6">
-                                                <textarea name="desc" class="form-control">{$links.desc}</textarea>
                                             </div>
                                             <p class="help-block col-sm-4 red">* 必填</p>
                                         </div>
