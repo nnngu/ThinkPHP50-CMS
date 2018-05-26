@@ -64,7 +64,7 @@
                                                 <select name="pid">
                                                     <option value="0">顶级权限</option>
                                                     {volist name='authRuleRes' id='authRule'}
-                                                    <option value="{$authRule.id}">{$authRule.title}</option>
+                                                    <option value="{$authRule.id}"><?php if($authRule['level']!=0){echo '|';} echo str_repeat('——', $authRule['level']*1) ?>{$authRule.title}</option>
                                                     {/volist}
                                                 </select>
                                             </div>

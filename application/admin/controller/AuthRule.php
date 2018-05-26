@@ -7,6 +7,9 @@ class AuthRule extends Common
 {
     public function lst()
     {
+        $authRule = new \app\admin\model\AuthRule();
+        $authRuleRes = $authRule->authRuleTree();
+        $this->assign('authRuleRes', $authRuleRes);
         return view();
     }
 
@@ -28,7 +31,8 @@ class AuthRule extends Common
             }
             return;
         }
-        $authRuleRes = db('auth_rule')->select();
+        $authRule = new \app\admin\model\AuthRule();
+        $authRuleRes = $authRule->authRuleTree();
         $this->assign('authRuleRes', $authRuleRes);
         return view();
     }
