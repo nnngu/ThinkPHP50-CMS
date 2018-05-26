@@ -70,7 +70,7 @@
                                         {volist name='authRuleRes' id='authRule'}
                                         <tr>
                                             <td align="center">{$authRule.id}</td>
-                                            <td align="center"><input name="11" style="width: 50%; text-align: center" type="text" value="{$authRule.sort}"></td>
+                                            <td align="center"><input name="{$authRule.id}" style="width: 50%; text-align: center" type="text" value="{$authRule.sort}"></td>
                                             <td><?php if($authRule['level']!=0){echo '|';} echo str_repeat('——', $authRule['level']*1) ?>{$authRule.title}</td>
                                             <td>{$authRule.name}</td>
                                             <td align="center">{$authRule.level+1} 级</td>

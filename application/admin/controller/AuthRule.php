@@ -8,6 +8,14 @@ class AuthRule extends Common
     public function lst()
     {
         $authRule = new \app\admin\model\AuthRule();
+        if (request()->isPost()) {
+            $sorts = input('post.');
+            foreach ($sorts as $k => $v) {
+                $authRule->update(['id' => $k, 'sort' => $v]);
+            }
+            $this->success('更新排序成功！', url('lst'));
+            return;
+        }
         $authRuleRes = $authRule->authRuleTree();
         $this->assign('authRuleRes', $authRuleRes);
         return view();
