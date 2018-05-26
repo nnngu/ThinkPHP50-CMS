@@ -59,7 +59,7 @@
                                 <div id="horizontal-form">
                                     <form class="form-horizontal" role="form" action="" method="post">
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label no-padding-right">用户组标题</label>
+                                            <label class="col-sm-2 control-label no-padding-right">用户组名称</label>
                                             <div class="col-sm-6">
                                                 <input class="form-control" placeholder="" name="title" required=""
                                                        type="text">
@@ -68,20 +68,26 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label no-padding-right">用户组地址</label>
+                                            <label class="col-sm-2 control-label no-padding-right">启用状态</label>
                                             <div class="col-sm-6">
-                                                <input class="form-control" placeholder="" name="url" required=""
-                                                       type="text">
+                                                <p class="help-block col-sm-4 red">
+                                                <label>
+                                                    <input class="checkbox-slider colored-darkorange" type="checkbox" checked="checked" name="status" value="1">
+                                                    <span class="text">
+
+                                                    </span>
+                                                </label>
+                                                </p>
                                             </div>
                                             <p class="help-block col-sm-4 red">* 必填</p>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label no-padding-right">用户组描述</label>
+                                            <label class="col-sm-2 control-label no-padding-right">配置权限</label>
                                             <div class="col-sm-6">
-                                                <textarea name="desc" class="form-control" required=""></textarea>
+                                                <p class="help-block col-sm-4 red">* TODO</p>
                                             </div>
-                                            <p class="help-block col-sm-4 red">* 必填</p>
+
                                         </div>
 
                                         <div class="form-group">
