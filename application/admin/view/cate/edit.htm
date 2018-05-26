@@ -18,6 +18,9 @@
     <link href="__ADMIN__/style/demo.css" rel="stylesheet">
     <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
     <link href="__ADMIN__/style/animate.css" rel="stylesheet">
+    <script src="__ADMIN__/ueditor/ueditor.config.js"></script>
+    <script src="__ADMIN__/ueditor/ueditor.all.min.js"></script>
+    <script src="__ADMIN__/ueditor/lang/zh-cn/zh-cn.js"></script>
 
 </head>
 <body>
@@ -91,6 +94,21 @@
                                         </div>
 
                                         <div class="form-group">
+                                            <label class="col-sm-2 control-label no-padding-right">关键词</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" placeholder="" name="keywords" value="{$cates.keywords}"
+                                                       type="text">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label no-padding-right">描述</label>
+                                            <div class="col-sm-6">
+                                                <textarea name="desc" class="form-control">{$cates.desc}</textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
                                             <label class="col-sm-2 control-label no-padding-right">栏目类型</label>
                                             <div class="col-sm-6">
                                                 <div class="radio" style="float:left; margin-right: 10px"><label><input
@@ -110,6 +128,14 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label no-padding-right">内容</label>
+                                            <div class="col-sm-6">
+                                                <textarea id="content" name="content">{$cates.content}</textarea>
+                                            </div>
+                                        </div>
+
                                         <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">
                                                 <button type="submit" class="btn btn-default">保存信息</button>
@@ -135,6 +161,10 @@
 <script src="__ADMIN__/style/jquery.js"></script>
 <!--Beyond Scripts-->
 <script src="__ADMIN__/style/beyond.js"></script>
+
+<script type="text/javascript">
+    UE.getEditor('content', {initialFrameWidth:481, initialFrameHeight:250});
+</script>
 
 
 </body>

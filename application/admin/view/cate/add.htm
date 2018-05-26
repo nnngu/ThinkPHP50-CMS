@@ -18,6 +18,9 @@
     <link href="__ADMIN__/style/demo.css" rel="stylesheet">
     <link href="__ADMIN__/style/typicons.css" rel="stylesheet">
     <link href="__ADMIN__/style/animate.css" rel="stylesheet">
+    <script src="__ADMIN__/ueditor/ueditor.config.js"></script>
+    <script src="__ADMIN__/ueditor/ueditor.all.min.js"></script>
+    <script src="__ADMIN__/ueditor/lang/zh-cn/zh-cn.js"></script>
 
 </head>
 <body>
@@ -59,10 +62,6 @@
                                 <div id="horizontal-form">
                                     <form class="form-horizontal" role="form" action="" method="post">
 
-                                        <input type="hidden" name="keywords" value="no">
-                                        <input type="hidden" name="desc" value="no">
-                                        <input type="hidden" name="content" value="no">
-
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label no-padding-right">上级栏目</label>
                                             <div class="col-sm-6">
@@ -86,6 +85,21 @@
                                         </div>
 
                                         <div class="form-group">
+                                            <label class="col-sm-2 control-label no-padding-right">关键词</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control" placeholder="" name="keywords"
+                                                       type="text">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label no-padding-right">描述</label>
+                                            <div class="col-sm-6">
+                                                <textarea name="desc" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
                                             <label class="col-sm-2 control-label no-padding-right">栏目类型</label>
                                             <div class="col-sm-6">
                                                 <div class="radio" style="float:left; margin-right: 10px"><label><input
@@ -102,6 +116,14 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label no-padding-right">内容</label>
+                                            <div class="col-sm-6">
+                                                <textarea id="content" name="content"></textarea>
+                                            </div>
+                                        </div>
+
                                         <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">
                                                 <button type="submit" class="btn btn-default">保存信息</button>
@@ -128,6 +150,9 @@
 <!--Beyond Scripts-->
 <script src="__ADMIN__/style/beyond.js"></script>
 
+<script type="text/javascript">
+    UE.getEditor('content', {initialFrameWidth:481, initialFrameHeight:250});
+</script>
 
 </body>
 </html>

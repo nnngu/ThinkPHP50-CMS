@@ -36,7 +36,11 @@ class Cate extends Common
                 $this->error($validate->getError());
             }
 
-            $cate->data(input('post.'));
+            $data = input('post.');
+            if ($data['keywords']) {
+                $data['keywords'] = str_replace('，', ',', $data['keywords']);
+            }
+            $cate->data($data);
             $add = $cate->save();
             if ($add) {
                 $this->success('添加栏目成功！', url('lst'));
@@ -58,7 +62,11 @@ class Cate extends Common
                 $this->error($validate->getError());
             }
 
-            $save = $cate->save(input('post.'), ['id' => input('id')]);
+            $data = input('post.');
+            if ($data['keywords']) {
+                $data['keywords'] = str_replace('，', ',', $data['keywords']);
+            }
+            $save = $cate->save($data, ['id' => input('id')]);
             if ($save !== false) {
                 $this->success('修改栏目成功！', url('lst'));
             } else {
