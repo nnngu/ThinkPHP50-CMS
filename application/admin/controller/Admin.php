@@ -24,8 +24,8 @@ class Admin extends Common
             }
 
             $data = input('post.');
-            $admin = new \app\admin\model\Admin();
-            $res = $admin->addadmin($data);
+            $adminModel = new \app\admin\model\Admin();
+            $res = $adminModel->addadmin($data);
             if ($res) {
                 $this->success('添加管理员成功！', url('lst'));
             } else {
@@ -33,6 +33,8 @@ class Admin extends Common
             }
             return;
         }
+        $authGroupRes = db('auth_group')->select();
+        $this->assign('authGroupRes', $authGroupRes);
         return view();
     }
 
@@ -63,7 +65,11 @@ class Admin extends Common
         if (!$admins) {
             $this->error('该管理员不存在！');
         }
+        $authGroupAccess = db('auth_group_access')->where(array('uid'=>$id))->find();
+        $authGroupRes = db('auth_group')->select();
+        $this->assign('authGroupRes', $authGroupRes);
         $this->assign('admin', $admins);
+        $this->assign('groupId', $authGroupAccess['group_id']);
         return view();
     }
 

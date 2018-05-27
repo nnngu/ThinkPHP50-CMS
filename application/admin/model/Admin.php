@@ -14,8 +14,14 @@ class Admin extends Model
         if ($data['password']) {
             $data['password'] = md5($data['password']);
         }
-        $res = $this->save($data);
+        $adminData = array();
+        $adminData['name']=$data['name'];
+        $adminData['password']=$data['password'];
+        $res = $this->save($adminData);
         if ($res) {
+            $groupAccess['uid'] = $this->id;
+            $groupAccess['group_id'] = $data['group_id'];
+            db('auth_group_access')->insert($groupAccess);
             return true;
         } else {
             return false;
@@ -38,7 +44,8 @@ class Admin extends Model
             $data['password'] = md5($data['password']);
         }
 
-        return $this->update($data);
+        db('auth_group_access')->where(array('uid'=>$data['id']))->update(['group_id'=>$data['group_id']]);
+        return $this->update(['name'=>$data['name'], 'password'=>$data['password']], ['id'=>$data['id']]);
     }
 
     public function deladmin($id)
