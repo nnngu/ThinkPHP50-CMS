@@ -16,5 +16,20 @@ class Common extends Controller
             $confRes[$v['enname']] = $v['value'];
         }
         $this->assign('confRes', $confRes);
+        $this->getNavCates();
+    }
+
+    public function getNavCates()
+    {
+        $cateRes = db('cate')->where(array('pid'=>0))->select();
+        foreach ($cateRes as $k=>$v) {
+            $children = db('cate')->where(array('pid'=>$v['id']))->select();
+            if ($children) {
+                $cateRes[$k]['children'] = $children;
+            } else {
+                $cateRes[$k]['children'] = 0;
+            }
+        }
+        $this->assign('cateRes', $cateRes);
     }
 }
