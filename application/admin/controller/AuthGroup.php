@@ -22,6 +22,12 @@ class AuthGroup extends Common
                 $data['status'] = 0;
             }
 
+            if (array_key_exists('rules', $data)) {
+                $data['rules'] = implode(',', $data['rules']);
+            } else {
+                $data['rules'] = -1;
+            }
+
             $add = db('auth_group')->insert($data);
             if ($add) {
                 $this->success('添加用户组成功！', url('lst'));
@@ -44,6 +50,12 @@ class AuthGroup extends Common
                 $data['status'] = 1;
             } else {
                 $data['status'] = 0;
+            }
+
+            if (array_key_exists('rules', $data)) {
+                $data['rules'] = implode(',', $data['rules']);
+            } else {
+                $data['rules'] = -1;
             }
 
             $save = db('auth_group')->update($data);

@@ -98,7 +98,7 @@
                                                     <tr>
                                                         <td>
                                                             <label>
-                                                                <?php echo str_repeat('&nbsp;', $authRule['level']*8); ?><input dataid='id-{$authRule.dataid}' class="colored-success checkbox-parent {if condition="$authRule['level'] neq 0"} checkbox-child {/if}" name="form-field-checkbox" type="checkbox" value="true">
+                                                                <?php echo str_repeat('&nbsp;', $authRule['level']*8); ?><input name="rules[]" value="{$authRule.id}" dataid='id-{$authRule.dataid}' class="colored-success checkbox-parent {if condition="$authRule['level'] neq 0"} checkbox-child {/if}"  type="checkbox" >
                                                                 <span {if condition="$authRule['level'] eq 0"} style="font-weight: bold; font-size: 15px;" {/if} class="text">{$authRule.title}</span>
                                                             </label>
                                                         </td>
