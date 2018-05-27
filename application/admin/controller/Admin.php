@@ -9,8 +9,18 @@ class Admin extends Common
 {
     public function lst()
     {
+        $auth = new Auth();
         $admin = new \app\admin\model\Admin();
         $adminres = $admin->getadmin();
+        foreach ($adminres as $k=>$v) {
+            $_groupTitle = $auth->getGroups($v['id']);
+            if (array_key_exists(0, $_groupTitle)) {
+                $groupTitle = $_groupTitle[0]['title'];
+                $v['groupTitle'] = $groupTitle;
+            } else {
+                $v['groupTitle'] = '该用户未设置用户组，或者所属用户组未启用！';
+            }
+        }
         $this->assign('adminres', $adminres);
         return view();
     }
