@@ -17,6 +17,7 @@ class AuthRule extends Model
         static $arr = array();
         foreach ($data as $k => $v) {
             if ($v['pid'] == $pid) {
+                $v['dataid'] = $this->getParentId($v['id']);
                 $arr[] = $v;
                 $this->sort($data, $v['id']);
             }
@@ -40,6 +41,29 @@ class AuthRule extends Model
             }
         }
         return $arr;
+    }
+
+    public function getParentId($authRuleId)
+    {
+        $authRuleRes = $this->select();
+        return $this->_getParentId($authRuleRes, $authRuleId, true);
+    }
+
+    public function _getParentId($authRuleRes, $authRuleId, $clear=false)
+    {
+        static $arr = array();
+        if ($clear) {
+            $arr = array();
+        }
+        foreach ($authRuleRes as $k => $v) {
+            if ($v['id'] == $authRuleId) {
+                $arr[] = $v['id'];
+                $this->_getParentId($authRuleRes, $v['pid'], false);
+            }
+        }
+        asort($arr);
+        $arrStr = implode('-', $arr);
+        return $arrStr;
     }
 }
 

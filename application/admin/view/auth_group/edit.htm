@@ -99,8 +99,8 @@
                                                     <tr>
                                                         <td>
                                                             <label>
-                                                                <?php echo str_repeat('&nbsp;', $authRule['level']*8); ?><input class="colored-success" name="form-field-checkbox" type="checkbox" value="true">
-                                                                <span class="text">{$authRule.title}</span>
+                                                                <?php echo str_repeat('&nbsp;', $authRule['level']*8); ?><input dataid='id-{$authRule.dataid}' class="colored-success checkbox-parent {if condition="$authRule['level'] neq 0"} checkbox-child {/if}" name="form-field-checkbox" type="checkbox" value="true">
+                                                                <span {if condition="$authRule['level'] eq 0"} style="font-weight: bold; font-size: 15px;" {/if} class="text">{$authRule.title}</span>
                                                             </label>
                                                         </td>
                                                     </tr>
@@ -136,7 +136,43 @@
 <script src="__ADMIN__/style/jquery.js"></script>
 <!--Beyond Scripts-->
 <script src="__ADMIN__/style/beyond.js"></script>
-
+<script type="text/javascript">
+    /* 权限配置 */
+    $(function () {
+        //动态选择框，上下级选中状态变化
+        $('input.checkbox-parent').on('change', function () {
+            var dataid = $(this).attr("dataid");
+            $('input[dataid^=' + dataid + ']').prop('checked', $(this).is(':checked'));
+        });
+        $('input.checkbox-child').on('change', function () {
+            var dataid = $(this).attr("dataid");
+            dataid = dataid.substring(0, dataid.lastIndexOf("-"));
+            var parent = $('input[dataid=' + dataid + ']');
+            if ($(this).is(':checked')) {
+                parent.prop('checked', true);
+                //循环到顶级
+                while (dataid.lastIndexOf("-") != 2) {
+                    dataid = dataid.substring(0, dataid.lastIndexOf("-"));
+                    parent = $('input[dataid=' + dataid + ']');
+                    parent.prop('checked', true);
+                }
+            } else {
+                //父级
+                if ($('input[dataid^=' + dataid + '-]:checked').length == 0) {
+                    parent.prop('checked', false);
+                    //循环到顶级
+                    while (dataid.lastIndexOf("-") != 2) {
+                        dataid = dataid.substring(0, dataid.lastIndexOf("-"));
+                        parent = $('input[dataid=' + dataid + ']');
+                        if ($('input[dataid^=' + dataid + '-]:checked').length == 0) {
+                            parent.prop('checked', false);
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
