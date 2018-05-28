@@ -11,7 +11,7 @@ class Article extends Model
     {
         $cate = new Cate();
         $allCateId = $cate->getChildrenId($cateId);
-        $artRes = $this->db('article')->where("cateid IN($allCateId)")->paginate(10);
+        $artRes = $this->db('article')->order('id desc')->where("cateid IN($allCateId)")->paginate(2);
         return $artRes;
     }
 }

@@ -18,6 +18,10 @@ class Article extends Common
     {
         if (request()->isPost()) {
             $data = input('post.');
+            $data['time'] = time();
+            if (!array_key_exists('thumb', $data)) {
+                $data['thumb'] = '';
+            }
             $validate = Loader::validate('Article');
             if(!$validate->scene('add')->check(input('post.'))){
                 $this->error($validate->getError());
