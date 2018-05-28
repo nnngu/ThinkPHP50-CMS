@@ -16,4 +16,11 @@ class Article extends Common
         $this->assign('hotRes', $hotRes);
         return view('article');
     }
+
+    public function zan()
+    {
+        db('article')->where(['id'=>input('artId')])->setInc('zan');
+        $zanCount = db('article')->field('zan')->where(['id'=>input('artId')])->find();
+        return $zanCount;
+    }
 }

@@ -127,6 +127,15 @@
         $("#mask").show();
     }
 </script>
+
+<script type="text/javascript">
+    function postZan(artId) {
+        $.post("/index/article/zan/artId/"+artId, function (data) {
+            $("#votecount26").text(data['zan']);
+        });
+    }
+</script>
+
 <div id="mask" class="mask" onclick="CloseMask()"></div>
 
 {include file='public/head' /}
@@ -251,15 +260,24 @@
                 <div class="widget single" style="margin-bottom: 0px; margin-left: 0px; margin-top: 40px;
                     padding-bottom: 0px;" id="newdigg">
                     <div class="single_views" onmouseout="ILike(this,false)" onmouseover="ILike(this,true)">
-                        <span class="textcontainer"><span class="votecount26536">0</span></span> <span
-                            class="bartext voteid26536"><a href="#"
+                        <span class="textcontainer">
+                            <span class="votecount26536" id="votecount26">{$articles.zan}</span>
+                        </span>
+                        <span
+                            class="bartext voteid26536">
+                            <a href="#"
                                                            id="aZanImg"
-                                                           onclick="javascript:postDigg('good',382)"></a></span><span
-                            class="text" id="spanZan">赞</span>
-                        <span class="text love">人</span>
+                                                           onclick="javascript:postZan({$articles.id})">
+                            </a>
+                        </span>
+                        <span
+                            class="text" id="spanZan">
+                            赞
+                        </span>
+                        <span class="text love">
+                            人
+                        </span>
                     </div>
-
-
                 </div>
                 <script language="javascript" type="text/javascript">getDigg(382);</script>
                 <!-- 右侧 -->
