@@ -262,66 +262,20 @@
         SITE MAP</h4>
     <div class="l">
         <ul id="menu-sitemap" class="menu">
+            {volist name='cateRes' id='cate'}
             <li class="menu-item menu-item-type-custom menu-item-object-custom">
-                <a target="_blank" href="/lookbike/">单车分类</a>
+                <a target="_blank" href="/index/{if condition="$cate['type'] eq 1"}artlist{elseif condition="$cate['type'] eq 3"}imglist{elseif condition="$cate['type'] eq 2"}page{/if}/index/cateid/{$cate.id}">{$cate.catename}</a>
+                {if condition="$cate['children'] neq 0"}
                 <ul class="sub-menu">
-
+                    <?php foreach($cate['children'] as $k2=>$v2): ?>
                     <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
-                        <a target="_blank" href="/lookbike/fixed-gear/">死飞车</a></li>
-
-                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
-                        <a target="_blank" href="/lookbike/vintagebicycle/">复古骑行</a></li>
-
-                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
-                        <a target="_blank" href="/lookbike/roadbicycle/">公路车</a></li>
-
-                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
-                        <a target="_blank" href="/lookbike/mountainbike/">山地车</a></li>
-
-                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
-                        <a target="_blank" href="/lookbike/small/">折叠/小径车</a></li>
-
-                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
-                        <a target="_blank" href="/lookbike/bmx/">BMX</a></li>
-
-                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
-                        <a target="_blank" href="/lookbike/otherbike/">城市车及其他</a></li>
-
+                        <a target="_blank" href="/index/{if condition="$v2['type'] eq 1"}artlist{elseif condition="$v2['type'] eq 3"}imglist{elseif condition="$v2['type'] eq 2"}page{/if}/index/cateid/{$v2.id}">{$v2['catename']}</a>
+                    </li>
+                    <?php endforeach; ?>
                 </ul>
+                {/if}
             </li>
-            <li class="menu-item menu-item-type-custom menu-item-object-custom">
-                <a target="_blank" href="/gear/">骑行装备</a>
-                <ul class="sub-menu">
-
-                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
-                        <a target="_blank" href="/gear/accessories/">车身装备</a></li>
-
-                    <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
-                        <a target="_blank" href="/gear/rs/">人身装备</a></li>
-
-                </ul>
-            </li>
-            <li class="menu-item menu-item-type-custom menu-item-object-custom">
-                <a target="_blank" href="/life/">单车生活</a>
-                <ul class="sub-menu">
-
-                </ul>
-            </li>
-            <li class="menu-item menu-item-type-custom menu-item-object-custom">
-                <a target="_blank" href="/news/">行业资讯</a>
-                <ul class="sub-menu">
-
-                </ul>
-            </li>
-
-            <li class="menu-item menu-item-type-custom menu-item-object-custom">
-                <a target="_blank" href="/aboutus.html">关于</a>
-                <ul class="sub-menu">
-                    <li class="menu-item menu-item-type-custom menu-item-object-custom">
-                        <a target="_blank" href="#">关于我们</a></li>
-
-                </ul>
-            </li>
+            {/volist}
         </ul>
     </div>
     <div class="r">
