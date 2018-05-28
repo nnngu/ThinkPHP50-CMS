@@ -21,15 +21,15 @@ class Article extends Model
 
         self::event('before_update', function ($article) {
             if ($_FILES['thumb']['tmp_name']) {
+                $arts = self::find($article->id);
+                if (file_exists(ROOT_PATH . 'public' . DS . $arts->thumb) && $arts['thumb'] != '') {
+                    unlink(ROOT_PATH . 'public' . DS . $arts->thumb);
+                }
                 $file = request()->file('thumb');
                 $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
                 if ($info) {
                     $thumb = '/uploads/' . $info->getSaveName();
                     $article['thumb'] = $thumb;
-                }
-                $arts = self::find($article->id);
-                if (file_exists(ROOT_PATH . 'public' . DS . $arts->thumb)) {
-                    unlink(ROOT_PATH . 'public' . DS . $arts->thumb);
                 }
             }
         });
