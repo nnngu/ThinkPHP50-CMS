@@ -2,6 +2,7 @@
 
 namespace app\index\controller;
 
+use app\index\model\Cate;
 use app\index\model\Conf;
 use think\Controller;
 
@@ -9,13 +10,15 @@ class Common extends Controller
 {
     protected function _initialize()
     {
-        $conf = new Conf();
-        $_confRes = $conf->getAllConf();
-        $confRes = array();
-        foreach ($_confRes as $k => $v) {
-            $confRes[$v['enname']] = $v['value'];
+        if (input('cateid')) {
+            $this->getPos(input('cateid'));
         }
-        $this->assign('confRes', $confRes);
+        if (input('artid')) {
+            $articles = db('article')->field('cateid')->find(input('artid'));
+            $cateid = $articles['cateid'];
+            $this->getPos($cateid);
+        }
+        $this->getConf();
         $this->getNavCates();
     }
 
@@ -31,5 +34,23 @@ class Common extends Controller
             }
         }
         $this->assign('cateRes', $cateRes);
+    }
+
+    public function getConf()
+    {
+        $conf = new Conf();
+        $_confRes = $conf->getAllConf();
+        $confRes = array();
+        foreach ($_confRes as $k => $v) {
+            $confRes[$v['enname']] = $v['value'];
+        }
+        $this->assign('confRes', $confRes);
+    }
+
+    public function getPos($cateid)
+    {
+        $cate = new Cate();
+        $posArr = $cate->getParents($cateid);
+        $this->assign('posArr', $posArr);
     }
 }

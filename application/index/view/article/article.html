@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>童老师ThinkPHP5交流群：484519446</title>
+    <title>文章内容页</title>
     <meta name="description" content="童老师ThinkPHP5交流群：484519446"/>
     <meta name="keywords" content="童老师ThinkPHP5交流群：484519446"/>
     <link rel="stylesheet" type="text/css" media="all" href="__INDEX__/style/style.css"/>
@@ -138,7 +138,12 @@
             <div id="content">
                 <div class="post" id="post-19563" style="border-right: solid 1px #000000; min-height: 1700px;
                     margin-top: 10px;">
-                    <div class="path"><a href='#'>主页</a> > <a href='/life/'>单车生活</a> ></div>
+                    <div class="path"><a href='/'>主页</a> >
+                        {volist name="posArr" id="posCate"}
+                            <a href='{:url('artlist/index', ['cateid'=>$posCate['id']])}'>{$posCate.catename}
+                            </a> >
+                        {/volist}
+                    </div>
                     <div class="single_entry single2_entry">
                         <div class="entry fewcomment">
                             <div class="title_container">
