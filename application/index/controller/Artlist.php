@@ -9,7 +9,9 @@ class Artlist extends Common
     {
         $article = new \app\index\model\Article();
         $artRes = $article->getAllArticles(input('cateid'));
+        $hotRes = $article->getHotArticles(input('cateid'));
         $this->assign('artRes', $artRes);
+        $this->assign('hotRes', $hotRes);
         return view('artlist');
     }
 }
