@@ -3,6 +3,8 @@
 namespace app\index\controller;
 
 
+use think\Request;
+
 class Article extends Common
 {
     public function index()
@@ -12,8 +14,12 @@ class Article extends Common
         $articles = db('article')->find($artId);
         $article = new \app\index\model\Article();
         $hotRes = $article->getHotArticles($articles['cateid']);
+        $request = Request::instance();
+        $ip = $request->ip();
         $this->assign('articles', $articles);
         $this->assign('hotRes', $hotRes);
+        $this->assign('ip', $ip);
+        $this->assign('artId', $artId);
         return view('article');
     }
 

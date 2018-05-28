@@ -10,8 +10,13 @@ class Index extends Common
         // 首页最新文章调用
         $articleM = new \app\index\model\Article();
         $newArticleRes = $articleM->getNewArticle();
+        $siteHotArt = $articleM->getSiteHot();
+        // 友情链接
+        $linkRes = db('link')->order('sort desc')->select();
         $this->assign([
             'newArticleRes'=>$newArticleRes,
+            'siteHotArt'=>$siteHotArt,
+            'linkRes'=>$linkRes,
         ]);
         return view();
     }
