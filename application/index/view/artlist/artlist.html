@@ -50,7 +50,12 @@
     <div id="xh_container">
         <div id="xh_content">
 
-        <div class="path"><a href='/'>主页</a> > <a href='#'>单车分类</a> > </div><div class="clear"></div>
+        <div class="path"><a href='/'>主页</a> >
+            {volist name="posArr" id="posCate"}
+            <a href='{:url('artlist/index', ['cateid'=>$posCate['id']])}'>{$posCate.catename}</a> >
+            {/volist}
+        </div>
+            <div class="clear"></div>
             <div class="xh_area_h_3" style="margin-top: 40px;">
 
                 {volist name='artRes' id='article'}

@@ -27,4 +27,28 @@ class Cate extends Model
         }
         return $arr;
     }
+
+    public function getParents($cateId)
+    {
+        $cateRes = $this->field('id, pid, catename')->select();
+        $cates = db('cate')->field('id, pid, catename')->find($cateId);
+        $pid = $cates['pid'];
+        if ($pid) {
+            $arr = $this->_getParentsId($cateRes, $pid);
+        }
+        $arr[] = $cates;
+        return $arr;
+    }
+
+    public function _getParentsId($cateRes, $pid)
+    {
+        static $arr = array();
+        foreach ($cateRes as $k => $v) {
+            if ($v['id'] == $pid) {
+                $arr[] = $v;
+                $this->_getParentsId($cateRes, $v['pid']);
+            }
+        }
+        return $arr;
+    }
 }
