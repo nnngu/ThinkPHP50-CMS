@@ -34,4 +34,10 @@ class Article extends Model
         $newArticleRes = db('article')->field('a.id, a.title, a.desc, a.thumb, a.click, a.zan, a.time, c.catename')->alias('a')->join('bk_cate c', 'a.cateid=c.id')->order('a.id desc')->limit(10)->select();
         return $newArticleRes;
     }
+
+    public function getRecArt()
+    {
+        $recArt = $this->where('rec', '=', 1)->field('id, title, thumb')->order('id desc')->limit(4)->select();
+        return $recArt;
+    }
 }
