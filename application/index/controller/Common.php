@@ -10,6 +10,7 @@ class Common extends Controller
 {
     protected function _initialize()
     {
+        // 当前位置（面包屑导航）
         if (input('cateid')) {
             $this->getPos(input('cateid'));
         }
@@ -18,8 +19,15 @@ class Common extends Controller
             $cateid = $articles['cateid'];
             $this->getPos($cateid);
         }
+        // 网站配置项
         $this->getConf();
+        // 网站头部的栏目导航
         $this->getNavCates();
+
+        // 获取网站底部的推荐栏目
+        $cateM = new Cate();
+        $recBottom = $cateM->getRecBottom();
+        $this->assign('recBottom', $recBottom);
     }
 
     public function getNavCates()

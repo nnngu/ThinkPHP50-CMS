@@ -63,4 +63,10 @@ class Cate extends Model
         $recBottom = $this->order('id desc')->where('rec_bottom', '=', 1)->select();
         return $recBottom;
     }
+
+    public function getCateInfo($cateId)
+    {
+        $cateInfo = $this->field('catename, keywords, desc')->find($cateId);
+        return $cateInfo;
+    }
 }

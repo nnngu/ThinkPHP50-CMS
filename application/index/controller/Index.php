@@ -18,7 +18,6 @@ class Index extends Common
         // 获取推荐栏目
         $cateM = new Cate();
         $recIndex = $cateM->getRecIndex();
-        $recBottom = $cateM->getRecBottom();
         // 友情链接
         $linkRes = db('link')->order('sort desc')->select();
         $this->assign([
@@ -27,7 +26,6 @@ class Index extends Common
             'linkRes'=>$linkRes,
             'recArt'=>$recArt,
             'recIndex'=>$recIndex,
-            'recBottom'=>$recBottom,
         ]);
         return view();
     }
