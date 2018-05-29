@@ -3,6 +3,8 @@
 namespace app\index\controller;
 
 
+use app\index\model\Cate;
+
 class Index extends Common
 {
     public function index()
@@ -11,7 +13,12 @@ class Index extends Common
         $articleM = new \app\index\model\Article();
         $newArticleRes = $articleM->getNewArticle();
         $siteHotArt = $articleM->getSiteHot();
+        // 获取推荐文章
         $recArt = $articleM->getRecArt();
+        // 获取推荐栏目
+        $cateM = new Cate();
+        $recIndex = $cateM->getRecIndex();
+        $recBottom = $cateM->getRecBottom();
         // 友情链接
         $linkRes = db('link')->order('sort desc')->select();
         $this->assign([
@@ -19,6 +26,8 @@ class Index extends Common
             'siteHotArt'=>$siteHotArt,
             'linkRes'=>$linkRes,
             'recArt'=>$recArt,
+            'recIndex'=>$recIndex,
+            'recBottom'=>$recBottom,
         ]);
         return view();
     }

@@ -106,20 +106,9 @@
             <div class="xh_area_h_3">
                 <div class="xh_area_title">
                     <a href="javascript:" class=""><img src="__INDEX__/images/xh_area_title_h3.png" alt=""/></a> <span class="r">
-                    
-                    <a href='/lookbike/fixed-gear/'>死飞车</a>
-                    
-                    <a href='/lookbike/vintagebicycle/'>复古骑行</a>
-                    
-                    <a href='/lookbike/roadbicycle/'>公路车</a>
-                    
-                    <a href='/lookbike/mountainbike/'>山地车</a>
-                    
-                    <a href='/lookbike/small/'>折叠/小径车</a>
-                    
-                    <a href='/lookbike/bmx/'>BMX</a>
-                    
-                    <a href='/lookbike/otherbike/'>城市车及其他</a>
+                    {volist name="recIndex" id="cate"}
+                    <a href="/index/{if condition="$cate['type'] eq 1"}artlist{elseif condition="$cate['type'] eq 3"}imglist{elseif condition="$cate['type'] eq 2"}page{/if}/index/cateid/{$cate.id}" target="_blank">{$cate.catename}</a>
+                    {/volist}
                      </span>
                 </div>
                 <br>

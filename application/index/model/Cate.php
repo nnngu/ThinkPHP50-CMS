@@ -51,4 +51,16 @@ class Cate extends Model
         }
         return $arr;
     }
+
+    public function getRecIndex()
+    {
+        $recIndex = $this->order('id desc')->where('rec_index', '=', 1)->select();
+        return $recIndex;
+    }
+
+    public function getRecBottom()
+    {
+        $recBottom = $this->order('id desc')->where('rec_bottom', '=', 1)->select();
+        return $recBottom;
+    }
 }
