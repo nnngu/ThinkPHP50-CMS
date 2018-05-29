@@ -48,9 +48,9 @@
     <div id="xh_container">
         <div id="xh_content">
 
-        <div class="path"><a href='/lookbike/'>搜索结果：</a></div><div class="clear"></div>
+        <div class="path">搜索 <font style="color: red;">{$keywords}</font> 结果：</div><div class="clear"></div>
             <div class="xh_area_h_3" style="margin-top: 40px;">
-
+            {if condition="$keywords neq ''"}
                 {volist name="serRes" id="art"}
                 <div class="xh_post_h_3 ofh">
                     <div class="xh">
@@ -74,11 +74,16 @@
                     </div>
                 </div>
                 {/volist}
-
+            {else/}
+                没有搜索关键词
+            {/if}
                 <div id="pagination"><div class="wp-pagenavi">
+
+                {if condition="$keywords neq ''"}
                 <span class="">
                     {$serRes->render()}
                 </span>
+                {/if}
 
                 </div></div>
             </div>
@@ -90,30 +95,15 @@
 
 <div style="background: url('__INDEX__/images/hots_bg.png') no-repeat scroll 0 0 transparent;width:250px;height:52px;margin-bottom:15px;">
 </div>
+
 <ul id="ulHot">
 
+{volist name="searchHot" id="art"}
 <li style="border-bottom:dashed 1px #ccc;height:70px; margin-bottom:15px;">
-<div style="float:left;width:85px;height:55px; overflow:hidden;"><a href="/lookbike/roadbicycle/110.html" target="_blank"><img src="__INDEX__/images/68.png" width="83" title="环西冠军克里斯霍纳的个性化定制座驾 Trek Madone公路车" /></a></div>
-<div style="float:right;width:145px;height:52px; overflow:hidden;"><a href="/lookbike/roadbicycle/110.html" target="_blank" title="环西冠军克里斯霍纳的个性化定制座驾 Trek Madone公路车">环西冠军克里斯霍纳的个性化定制座驾 Trek Ma</a></div>
+<div style="float:left;width:85px;height:55px; overflow:hidden;"><a href="{:url('article/index', ['artid'=>$art['id']])}" target="_blank"><img src="{$art.thumb}" width="83" title="{$art.title}" /></a></div>
+<div style="float:right;width:145px;height:52px; overflow:hidden;"><a href="{:url('article/index', ['artid'=>$art['id']])}" target="_blank" title="{$art.title}">{$art.title}</a></div>
 </li>
-<li style="border-bottom:dashed 1px #ccc;height:70px; margin-bottom:15px;">
-<div style="float:left;width:85px;height:55px; overflow:hidden;"><a href="/lookbike/small/184.html" target="_blank"><img src="__INDEX__/images/146.jpg" width="83" title="英式折叠车Brompton Junction 上海旗舰店" /></a></div>
-<div style="float:right;width:145px;height:52px; overflow:hidden;"><a href="/lookbike/small/184.html" target="_blank" title="英式折叠车Brompton Junction 上海旗舰店">英式折叠车Brompton Junction 上海旗舰店</a></div>
-</li>
-<li style="border-bottom:dashed 1px #ccc;height:70px; margin-bottom:15px;">
-<div style="float:left;width:85px;height:55px; overflow:hidden;"><a href="/lookbike/vintagebicycle/57.html" target="_blank"><img src="__INDEX__/images/17.jpg" width="83" title="延时胶片摄影：上海复古骑行大会" /></a></div>
-<div style="float:right;width:145px;height:52px; overflow:hidden;"><a href="/lookbike/vintagebicycle/57.html" target="_blank" title="延时胶片摄影：上海复古骑行大会">延时胶片摄影：上海复古骑行大会</a></div>
-</li>
-<li style="border-bottom:dashed 1px #ccc;height:70px; margin-bottom:15px;">
-<div style="float:left;width:85px;height:55px; overflow:hidden;"><a href="/lookbike/small/199.html" target="_blank"><img src="__INDEX__/images/159.jpg" width="83" title="Brompton小布2012女王纪念版" /></a></div>
-<div style="float:right;width:145px;height:52px; overflow:hidden;"><a href="/lookbike/small/199.html" target="_blank" title="Brompton小布2012女王纪念版">Brompton小布2012女王纪念版</a></div>
-</li>
-<li style="border-bottom:dashed 1px #ccc;height:70px; margin-bottom:15px;">
-<div style="float:left;width:85px;height:55px; overflow:hidden;"><a href="/lookbike/bmx/213.html" target="_blank"><img src="__INDEX__/images/181.png" width="83" title="街头气息十足 Stussy 2013 秋冬系列新品LOOKBOOK" /></a></div>
-<div style="float:right;width:145px;height:52px; overflow:hidden;"><a href="/lookbike/bmx/213.html" target="_blank" title="街头气息十足 Stussy 2013 秋冬系列新品LOOKBOOK">街头气息十足 Stussy 2013 秋冬系列新品LOOKB</a></div>
-</li>
-
-
+{/volist}
 
 </ul>
                 </div>

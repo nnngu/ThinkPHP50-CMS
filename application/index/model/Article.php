@@ -23,6 +23,12 @@ class Article extends Model
         return $artRes;
     }
 
+    public function getSearchHot()
+    {
+        $artRes = $this->db('article')->order('click desc')->limit(5)->select();
+        return $artRes;
+    }
+
     public function getSiteHot()
     {
         $siteHotArt = $this->field('id, title, thumb')->order('click desc')->limit(5)->select();

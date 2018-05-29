@@ -3,24 +3,18 @@
 namespace app\index\controller;
 
 
-use app\index\model\Cate;
-
 class Search extends Common
 {
     public function index()
     {
-//        $article = new \app\index\model\Article();
-//        $artRes = $article->getAllArticles(input('cateid'));
-//        $hotRes = $article->getHotArticles(input('cateid'));
-//        $cate = new Cate();
-//        $cateInfo = $cate->getCateInfo(input('cateid'));
-//        $this->assign('artRes', $artRes);
-//        $this->assign('hotRes', $hotRes);
-//        $this->assign('cateInfo', $cateInfo);
+        $article = new \app\index\model\Article();
+        $searchHot = $article->getSearchHot();
 
         $keywords = input('keywords');
-        $serRes = db('article')->order('id desc')->where('title', 'like', '%'.$keywords.'%')->paginate(3, false, $config=[]);
+        $serRes = db('article')->order('id desc')->where('title', 'like', '%'.$keywords.'%')->paginate(3, false, $config=['query'=>['keywords'=>$keywords]]);
         $this->assign('serRes', $serRes);
+        $this->assign('keywords', $keywords);
+        $this->assign('searchHot', $searchHot);
         return view('search');
     }
 }
