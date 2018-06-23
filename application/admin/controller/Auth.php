@@ -13,8 +13,6 @@ use think\Config;
 use think\Session;
 use think\Db;
 /**
- * ThinkPHP5资源下载交流群：⑥：579844532 ⑤： 429337168 ④： 196304594
- * ThinkPHP5视频教程大全：http://www.chuanke.com/s2260700.html
  * 权限认证类
  * 功能特性：
  * 1，是对规则进行认证，不是对节点进行认证。用户可以把节点当作规则名称实现对节点进行认证。
